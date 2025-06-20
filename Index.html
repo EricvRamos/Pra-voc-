@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Eu te amo</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      background: black;
+      color: white;
+      font-family: sans-serif;
+    }
+    .cascata {
+      position: absolute;
+      top: -50px;
+      left: calc(var(--x) * 100%);
+      font-size: 24px;
+      animation: descer 5s linear infinite;
+      color: pink;
+      pointer-events: none;
+    }
+    @keyframes descer {
+      0% { transform: translateY(-50px); opacity: 1; }
+      100% { transform: translateY(100vh); opacity: 0; }
+    }
+    .click-msg {
+      position: absolute;
+      font-size: 20px;
+      color: red;
+      animation: surgir 2s ease-out forwards;
+      pointer-events: none;
+    }
+    @keyframes surgir {
+      0% { opacity: 0; transform: scale(0.8); }
+      50% { opacity: 1; transform: scale(1.1); }
+      100% { opacity: 0; transform: scale(1); }
+    }
+  </style>
+</head>
+<body>
+<script>
+  function criarFraseCascata() {
+    const s = document.createElement('span');
+    s.className = 'cascata';
+    s.textContent = 'eu te amo anjinho❤️';
+    s.style.setProperty('--x', Math.random());
+    document.body.appendChild(s);
+    setTimeout(() => s.remove(), 6000);
+  }
+  setInterval(criarFraseCascata, 500);
+  document.addEventListener('click', (e) => {
+    const m = document.createElement('div');
+    m.className = 'click-msg';
+    m.textContent = 'Você é meu Tudo Samanta';
+    m.style.left = e.clientX + 'px';
+    m.style.top = e.clientY + 'px';
+    document.body.appendChild(m);
+    setTimeout(() => m.remove(), 2000);
+  });
+</script>
+</body>
+</html>
